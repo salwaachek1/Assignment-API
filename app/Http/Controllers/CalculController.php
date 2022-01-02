@@ -95,7 +95,7 @@ class CalculController extends Controller
     {
         if(($games["data"][$i]["playerA"]["name"]==$name)||($games["data"][$i]["playerB"]["name"]==$name)) {
             $count_games = $count_games + 1;
-            $games_played[]=$games["data"][$i]["gameId"];
+            $games_played[]=$games["data"][$i];
         $x=$this->sort_rec($games,$i,$name);
         $result=$x[0]+$result;
         $count_rock=$x[1]+$count_rock;
@@ -110,7 +110,7 @@ class CalculController extends Controller
         {
        if(($games["data"][$i]["playerA"]["name"]==$name)|| ($games["data"][$i]["playerB"]["name"]==$name)) {
             $count_games = $count_games + 1; 
-            $games_played[]=$games["data"][$i]["gameId"];     
+            $games_played[]=$games["data"][$i];     
       $x=$this->sort_rec($games,$i,$name);
         $result=$x[0]+$result;
         $count_rock=$x[1]+$count_rock;
@@ -131,13 +131,13 @@ class CalculController extends Controller
     else if(($count_scissors>=$count_rock)&&($count_scissors>=$count_paper)){
          $most_played="Scissors"; 
     }
-    $ratio=$result/$count_games;
+    $ratio=round($result/$count_games, 2);
     $count=strval($count_games);
         return response()->json([
                     'count' => $count,
                     'ratio' => $ratio,
-                    'most played' => $most_played,
-                    'games played'=> $games_played,
+                    'most_played' => $most_played,
+                    'games_played'=> $games_played,
                 ]);
     // return response()->json($count,$result);
     }
@@ -154,7 +154,7 @@ class CalculController extends Controller
     {
         if(($games["data"][$i]["playerA"]["name"]==$name)|| ($games["data"][$i]["playerB"]["name"]==$name)) {
             $count_games = $count_games + 1;
-            $games_played[]=$games["data"][$i]["gameId"];
+            $games_played[]=$games["data"][$i];
             $result=$this->sort_rec($games,$i,$name)+$result;
         }
     }  
@@ -165,7 +165,7 @@ class CalculController extends Controller
         {
         if(($games["data"][$i]["playerA"]["name"]==$name)|| ($games["data"][$i]["playerB"]["name"]==$name)) {
             $count_games = $count_games + 1;
-            $games_played[]=$games["data"][$i]["gameId"];
+            $games_played[]=$games["data"][$i];
             $result=$this->sort_rec($games,$i,$name)+$result;
         }
     }  
