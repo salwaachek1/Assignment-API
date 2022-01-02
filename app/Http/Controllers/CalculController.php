@@ -82,6 +82,7 @@ class CalculController extends Controller
     {
     $limit=0;    
     $count_games = 0;
+    $games_played= [];
     $result=0;
     $count_rock=0;
     $count_paper=0;
@@ -93,7 +94,8 @@ class CalculController extends Controller
     for($i=0;$i<count($games["data"]);$i++)    
     {
         if(($games["data"][$i]["playerA"]["name"]==$name)||($games["data"][$i]["playerB"]["name"]==$name)) {
-            $count_games = $count_games + 1;      
+            $count_games = $count_games + 1;
+            $games_played[]=$games["data"][$i]["gameId"];
         $x=$this->sort_rec($games,$i,$name);
         $result=$x[0]+$result;
         $count_rock=$x[1]+$count_rock;
@@ -107,7 +109,8 @@ class CalculController extends Controller
     for($i=0;$i<count($games["data"]);$i++)    
         {
        if(($games["data"][$i]["playerA"]["name"]==$name)|| ($games["data"][$i]["playerB"]["name"]==$name)) {
-            $count_games = $count_games + 1;      
+            $count_games = $count_games + 1; 
+            $games_played[]=$games["data"][$i]["gameId"];     
       $x=$this->sort_rec($games,$i,$name);
         $result=$x[0]+$result;
         $count_rock=$x[1]+$count_rock;
@@ -134,6 +137,7 @@ class CalculController extends Controller
                     'count' => $count,
                     'ratio' => $ratio,
                     'most played' => $most_played,
+                    'games played'=> $games_played,
                 ]);
     // return response()->json($count,$result);
     }
@@ -150,6 +154,7 @@ class CalculController extends Controller
     {
         if(($games["data"][$i]["playerA"]["name"]==$name)|| ($games["data"][$i]["playerB"]["name"]==$name)) {
             $count_games = $count_games + 1;
+            $games_played[]=$games["data"][$i]["gameId"];
             $result=$this->sort_rec($games,$i,$name)+$result;
         }
     }  
@@ -160,6 +165,7 @@ class CalculController extends Controller
         {
         if(($games["data"][$i]["playerA"]["name"]==$name)|| ($games["data"][$i]["playerB"]["name"]==$name)) {
             $count_games = $count_games + 1;
+            $games_played[]=$games["data"][$i]["gameId"];
             $result=$this->sort_rec($games,$i,$name)+$result;
         }
     }  
