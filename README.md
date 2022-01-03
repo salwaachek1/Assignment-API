@@ -18,7 +18,7 @@ Clone the repository
 
 Switch to the repo folder
 
-    cd server_side
+    cd Assignment-API
 
 Install all the dependencies using composer
 
