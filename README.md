@@ -18,7 +18,7 @@ Clone the repository
 
 Switch to the repo folder
 
-    cd Assignment-API
+    cd Assignment-API-master
 
 Install all the dependencies using composer
 
@@ -44,4 +44,4 @@ Run the laravel development server
 
 The api can now be accessed at
 
-    http://localhost:8000/api
+    http://localhost:8000/Assignment-API-master/public/api
